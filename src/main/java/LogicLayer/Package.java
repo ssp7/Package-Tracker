@@ -3,7 +3,7 @@ package LogicLayer;
 public class Package {
 
     public Package(String orderNumber, Location destination, Location origin, String status) {
-        OrderNumber = orderNumber;
+        this.OrderNumber = orderNumber;
         this.destination = destination;
         this.origin = origin;
         this.status = status;

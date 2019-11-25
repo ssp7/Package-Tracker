@@ -13,5 +13,12 @@ public class DroneManager {
         this.droneList = droneList;
     }
 
-
+    public Drone getDrone(int droneID){
+        for(Drone drone : droneList){
+            if(drone.getDroneID() == droneID){
+                return drone;
+            }
+        }
+        return null;
+    }
 }

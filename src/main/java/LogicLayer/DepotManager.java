@@ -12,4 +12,13 @@ public class DepotManager {
     public void setDepotList(List<Depot> depotList) {
         this.depotList = depotList;
     }
+
+    public Depot getDepot(String depotID){
+        for(Depot depot : depotList){
+            if(depot.getDepotID().equals(depotID)){
+                return depot;
+            }
+        }
+        return null;
+    }
 }

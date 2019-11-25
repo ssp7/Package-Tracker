@@ -15,6 +15,7 @@ public class Depot {
     private List<Drone> droneList;
     private Queue<Package> packageQueue;
     private Location depotLocation;
+    private String depotID;
 
     public List<Drone> getDroneList() {
         return droneList;
@@ -40,5 +41,12 @@ public class Depot {
         this.depotLocation = depotLocation;
     }
 
+    public String getDepotID() {
+        return depotID;
+    }
+
+    public void setDepotID(String depotID) {
+        this.depotID = depotID;
+    }
 
 }

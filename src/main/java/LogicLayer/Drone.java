@@ -2,23 +2,23 @@ package LogicLayer;
 
 public class Drone {
 
-    public Drone(int droneID, String status, Location location, Package shipment){
+    public Drone(String droneID, String status, Location location, Package shipment){
         this.droneID = droneID;
         this.status = status;
         this.location = location;
         this.shipment = shipment;
     }
 
-    private int droneID;
+    private String droneID;
     private String status;
     private Location location;
     private Package shipment;
 
-    public int getDroneID() {
+    public String getDroneID() {
         return droneID;
     }
 
-    public void setDroneID(int droneID) {
+    public void setDroneID(String droneID) {
         this.droneID = droneID;
     }
 

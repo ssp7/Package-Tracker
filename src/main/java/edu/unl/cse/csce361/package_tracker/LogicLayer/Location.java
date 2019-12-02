@@ -6,6 +6,10 @@ public class Location {
         this.longitude = longitude;
         this.latitude = latitude;
     }
+
+    public Location(){
+
+    }
     private double longitude;
     private double latitude;
 

@@ -12,6 +12,10 @@ public class Depot {
         this.depotLocation = depotLocation;
     }
 
+    public Depot(){
+
+    }
+
     private List<Drone> droneList;
     private Queue<Package> packageQueue;
     private Location depotLocation;

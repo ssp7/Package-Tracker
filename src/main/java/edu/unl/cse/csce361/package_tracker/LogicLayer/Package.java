@@ -10,7 +10,6 @@ public class Package {
     }
 
     public Package(){
-
     }
 
     private String OrderNumber;

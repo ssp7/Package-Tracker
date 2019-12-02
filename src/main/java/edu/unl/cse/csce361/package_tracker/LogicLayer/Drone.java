@@ -9,6 +9,9 @@ public class Drone {
         this.shipment = shipment;
     }
 
+    public Drone(){
+    }
+
     private String droneID;
     private String status;
     private Location location;

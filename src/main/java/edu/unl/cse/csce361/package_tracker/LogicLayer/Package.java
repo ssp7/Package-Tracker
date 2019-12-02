@@ -9,6 +9,10 @@ public class Package {
         this.status = status;
     }
 
+    public Package(){
+
+    }
+
     private String OrderNumber;
     private Location destination;
     private Location origin;

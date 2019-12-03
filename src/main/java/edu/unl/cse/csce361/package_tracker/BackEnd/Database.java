@@ -17,7 +17,8 @@ public class Database {
     }
 
     public static List<Drone> readDrones(){
-        return null;
+        return ObjectsConverter.parseDrone("Drones.csv");
+
     }
 
     public static int writeDrone(List<Drone> droneList){
@@ -25,7 +26,7 @@ public class Database {
     }
 
     public static List<Depot> readDepots(){
-        return null;
+        return ObjectsConverter.parseDepot("depots.csv");
     }
 
     public static int writeDepots(List<Depot> depotList){

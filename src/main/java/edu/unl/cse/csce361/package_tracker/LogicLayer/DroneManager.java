@@ -1,5 +1,7 @@
 package edu.unl.cse.csce361.package_tracker.LogicLayer;
 
+import edu.unl.cse.csce361.package_tracker.BackEnd.Database;
+
 import java.util.List;
 import java.util.Scanner;
 
@@ -37,5 +39,9 @@ public class DroneManager {
             System.out.println("Please input a valid drone ID");
         }
 
+    }
+    public static void InitializeDrone(){
+
+        droneList = Database.readDrones();
     }
 }

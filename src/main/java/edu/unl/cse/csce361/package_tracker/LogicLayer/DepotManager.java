@@ -1,5 +1,8 @@
 package edu.unl.cse.csce361.package_tracker.LogicLayer;
 
+import edu.unl.cse.csce361.package_tracker.BackEnd.Database;
+import edu.unl.cse.csce361.package_tracker.BackEnd.ObjectsConverter;
+
 import java.util.List;
 
 public class DepotManager {
@@ -12,5 +15,8 @@ public class DepotManager {
             }
         }
         return null;
+    }
+    public static void initializeDepot(){
+      depotList = Database.readDepots();
     }
 }

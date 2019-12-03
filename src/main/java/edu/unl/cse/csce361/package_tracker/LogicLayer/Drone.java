@@ -48,4 +48,10 @@ public class Drone {
     public void setShipment(Package shipment) {
         this.shipment = shipment;
     }
+
+    @Override
+    public String toString(){
+        String droneString = this.droneID + ", " + this.status + ", " + this.location.toString() + ", " + this.shipment.toString();
+        return droneString;
+    }
 }

@@ -1,5 +1,7 @@
 package edu.unl.cse.csce361.package_tracker.FrontEnd;
 
+import edu.unl.cse.csce361.package_tracker.Commands.CheckDroneStatus;
+import edu.unl.cse.csce361.package_tracker.Commands.CheckPackageStatus;
 import edu.unl.cse.csce361.package_tracker.Commands.Command;
 import edu.unl.cse.csce361.package_tracker.Commands.ExitCommand;
 
@@ -32,11 +34,18 @@ public class CLI {
 
     private void addInitialCommands() {
         addCommand(new ExitCommand(this));
-
+        addCommand(new CheckDroneStatus());
+        addCommand(new CheckPackageStatus());
     }
 
     public void run() {
         while (running) {
+            System.out.println("    ____        __         _          ____                            \n" +
+                    "   / __ )____  / /_  ____ ( )_____   / __ \\_________  ____  ___  _____\n" +
+                    "  / __  / __ \\/ __ \\/ __ \\|// ___/  / / / / ___/ __ \\/ __ \\/ _ \\/ ___/\n" +
+                    " / /_/ / /_/ / / / / / / / (__  )  / /_/ / /  / /_/ / / / /  __(__  ) \n" +
+                    "/_____/\\____/_/ /_/_/ /_/ /____/  /_____/_/   \\____/_/ /_/\\___/____/  ");
+
             for (int i=0; i<commands.size(); i++) {
                 System.out.println(i + ". " + commands.get(i));
             }

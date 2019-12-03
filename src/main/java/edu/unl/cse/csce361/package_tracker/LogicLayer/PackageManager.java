@@ -1,10 +1,12 @@
 package edu.unl.cse.csce361.package_tracker.LogicLayer;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class PackageManager {
-    public static List<Package> packageList;
+    public static List<Package> packageList = new ArrayList<>();
+
 
     /**
      * Finds the package from the list with the given order number.
@@ -23,20 +25,25 @@ public class PackageManager {
 
     public static void getPackageStatus(){
         //print the drones
-        System.out.println("Please enter the order number of the package.");
+        if(packageList.isEmpty()){
+            System.out.println("No packages");
+            return;
+        }
+
         for(Package order : packageList){
             System.out.println(order.getOrderNumber());
         }
+        System.out.println("Please enter the order number of the package.");
         Scanner input = new Scanner(System.in);
 
         String requestedOrder = input.nextLine();
+        Package requestedPackage = getPackage(requestedOrder);
 
-
-        if(getPackage(requestedOrder) != null){
-            System.out.println(getPackage(requestedOrder));
+        if(requestedPackage != null){
+            System.out.println(requestedPackage);
         }else{
             System.out.println("Please input a valid order number");
         }
-        //TODO: Finish
+
     }
 }

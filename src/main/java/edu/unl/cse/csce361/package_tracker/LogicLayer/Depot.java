@@ -6,10 +6,11 @@ import java.util.Queue;
 
 public class Depot {
 
-    public Depot(List<Drone> droneList, Queue<Package> packageQueue, Location depotLocation) {
+    public Depot(List<Drone> droneList, Queue<Package> packageQueue, Location depotLocation, String DepotID) {
         this.droneList = droneList;
         this.packageQueue = packageQueue;
         this.depotLocation = depotLocation;
+        this.depotID = DepotID;
     }
 
     public Depot(){

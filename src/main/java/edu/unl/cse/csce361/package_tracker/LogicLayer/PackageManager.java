@@ -1,5 +1,7 @@
 package edu.unl.cse.csce361.package_tracker.LogicLayer;
 
+import edu.unl.cse.csce361.package_tracker.BackEnd.Database;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -45,5 +47,9 @@ public class PackageManager {
             System.out.println("Please input a valid order number");
         }
 
+    }
+
+    public static void initializePackage(){
+        packageList = Database.readPackages();
     }
 }

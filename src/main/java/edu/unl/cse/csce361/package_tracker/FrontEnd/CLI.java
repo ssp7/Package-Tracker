@@ -4,6 +4,7 @@ import edu.unl.cse.csce361.package_tracker.Commands.CheckDroneStatus;
 import edu.unl.cse.csce361.package_tracker.Commands.CheckPackageStatus;
 import edu.unl.cse.csce361.package_tracker.Commands.Command;
 import edu.unl.cse.csce361.package_tracker.Commands.ExitCommand;
+import edu.unl.cse.csce361.package_tracker.LogicLayer.PackageManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,6 +41,7 @@ public class CLI {
 
     public void run() {
         //initialize data
+        PackageManager.initializePackage();
         System.out.println("    ____        __         _          ____                            \n" +
                 "   / __ )____  / /_  ____ ( )_____   / __ \\_________  ____  ___  _____\n" +
                 "  / __  / __ \\/ __ \\/ __ \\|// ___/  / / / / ___/ __ \\/ __ \\/ _ \\/ ___/\n" +

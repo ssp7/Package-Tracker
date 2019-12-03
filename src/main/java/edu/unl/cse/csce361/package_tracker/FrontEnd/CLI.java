@@ -1,5 +1,7 @@
 package edu.unl.cse.csce361.package_tracker.FrontEnd;
 
+import edu.unl.cse.csce361.package_tracker.Commands.CheckDroneStatus;
+import edu.unl.cse.csce361.package_tracker.Commands.CheckPackageStatus;
 import edu.unl.cse.csce361.package_tracker.Commands.Command;
 import edu.unl.cse.csce361.package_tracker.Commands.ExitCommand;
 
@@ -32,7 +34,8 @@ public class CLI {
 
     private void addInitialCommands() {
         addCommand(new ExitCommand(this));
-
+        addCommand(new CheckDroneStatus());
+        addCommand(new CheckPackageStatus());
     }
 
     public void run() {

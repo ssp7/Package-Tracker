@@ -1,6 +1,7 @@
 package edu.unl.cse.csce361.package_tracker.LogicLayer;
 
 import java.util.List;
+import java.util.Scanner;
 
 public class DroneManager {
     public static List<Drone> droneList;
@@ -12,5 +13,29 @@ public class DroneManager {
             }
         }
         return null;
+    }
+
+    public static void getDroneStatus(){
+        //print the drones
+        if(droneList.isEmpty()){
+            System.out.println("No drones");
+            return;
+        }
+
+        for(Drone drone : droneList){
+            System.out.println(drone.getDroneID());
+        }
+        System.out.println("Please enter the drone ID.");
+        Scanner input = new Scanner(System.in);
+
+        String requestedDroneID = input.nextLine();
+        Drone requestedDrone = getDrone(requestedDroneID);
+
+        if(requestedDrone != null){
+            System.out.println(requestedDrone);
+        }else{
+            System.out.println("Please input a valid drone ID");
+        }
+
     }
 }

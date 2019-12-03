@@ -2,27 +2,27 @@ package edu.unl.cse.csce361.package_tracker.LogicLayer;
 
 public class Package {
 
-    public Package(String orderNumber, Location destination, Location origin, String status) {
+    private String OrderNumber;
+    private Location destination;
+    private Location origin;
+    private String status;
+
+
+
+
+    public Package(String orderNumber, Location destination ,Location origin, String status  ) {
         this.OrderNumber = orderNumber;
         this.destination = destination;
         this.origin = origin;
         this.status = status;
     }
 
-    public Package(){
-    }
-
-    private String OrderNumber;
-    private Location destination;
-    private Location origin;
-    private String status;
-
     public String getOrderNumber() {
         return OrderNumber;
     }
 
     public void setOrderNumber(String orderNumber) {
-        OrderNumber = orderNumber;
+        this.OrderNumber = orderNumber;
     }
 
     public Location getDestination() {

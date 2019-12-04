@@ -2,13 +2,14 @@ package edu.unl.cse.csce361.package_tracker.BackEnd;
 
 import edu.unl.cse.csce361.package_tracker.LogicLayer.Depot;
 import edu.unl.cse.csce361.package_tracker.LogicLayer.Drone;
+import edu.unl.cse.csce361.package_tracker.LogicLayer.Package;
 
 import java.util.List;
 
 public class Database {
 
     public static List<Package> readPackages(){
-        return null;
+        return ObjectsConverter.parsePackage("Packages.csv");
     }
 
     public static int writePackages(List<Package> packageList){
@@ -16,7 +17,8 @@ public class Database {
     }
 
     public static List<Drone> readDrones(){
-        return null;
+        return ObjectsConverter.parseDrone("Drones.csv");
+
     }
 
     public static int writeDrone(List<Drone> droneList){
@@ -24,7 +26,7 @@ public class Database {
     }
 
     public static List<Depot> readDepots(){
-        return null;
+        return ObjectsConverter.parseDepot("depots.csv");
     }
 
     public static int writeDepots(List<Depot> depotList){

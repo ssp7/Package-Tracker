@@ -1,15 +1,15 @@
 package edu.unl.cse.csce361.package_tracker.LogicLayer;
 
 import java.util.List;
-import java.util.Queue;
 
 
 public class Depot {
 
-    public Depot(List<Drone> droneList, Queue<Package> packageQueue, Location depotLocation) {
+    public Depot(List<Drone> droneList, List<Package> packageQueue, Location depotLocation, String DepotID) {
         this.droneList = droneList;
         this.packageQueue = packageQueue;
         this.depotLocation = depotLocation;
+        this.depotID = DepotID;
     }
 
     public Depot(){
@@ -17,7 +17,7 @@ public class Depot {
     }
 
     private List<Drone> droneList;
-    private Queue<Package> packageQueue;
+    private List<Package> packageQueue;
     private Location depotLocation;
     private String depotID;
 
@@ -29,11 +29,11 @@ public class Depot {
         this.droneList = droneList;
     }
 
-    public Queue<Package> getPackageQueue() {
+    public List<Package> getPackageQueue() {
         return packageQueue;
     }
 
-    public void setPackageQueue(Queue<Package> packageQueue) {
+    public void setPackageQueue(List<Package> packageQueue) {
         this.packageQueue = packageQueue;
     }
 

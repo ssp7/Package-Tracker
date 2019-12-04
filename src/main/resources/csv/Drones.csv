@@ -1,0 +1,7 @@
+DroneID,Status,locationX,locationY,packageID
+D001,In Depot,0.0,4.0,AA001
+D002,Between Depots,0.0,0.0,
+D003,En Route,0.0,0.0,
+D004,At Customer,0.0,4.0,
+D005,Between Depots,0.0,0.0,
+D006,In Depot,0.0,0.0,AA002

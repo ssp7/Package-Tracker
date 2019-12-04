@@ -140,10 +140,10 @@ public class ObjectsConverter {
         for (Package pack : packages) {
             Map<String, String> packageMap = new HashMap<>();
             packageMap.put("OrderNumber", pack.getOrderNumber());
-            packageMap.put("DestinationX", Double.toString(pack.getDestination().getLatitude()));
-            packageMap.put("DestinationY", Double.toString(pack.getDestination().getLongitude()));
-            packageMap.put("OriginX", Double.toString(pack.getOrigin().getLongitude()));
-            packageMap.put("OriginY", Double.toString(pack.getOrigin().getLatitude()));
+            packageMap.put("DestinationX", Double.toString(pack.getDestination().getX()));
+            packageMap.put("DestinationY", Double.toString(pack.getDestination().getY()));
+            packageMap.put("OriginX", Double.toString(pack.getOrigin().getY()));
+            packageMap.put("OriginY", Double.toString(pack.getOrigin().getX()));
             packageMap.put("PackageStatus", pack.getStatus());
             data.add(packageMap);
         }
@@ -159,8 +159,8 @@ public class ObjectsConverter {
             Map<String, String> droneMap = new HashMap<>();
             droneMap.put("DroneID", drone.getDroneID());
             droneMap.put("Status", drone.getStatus());
-            droneMap.put("LocationX", Double.toString(drone.getLocation().getLatitude()));
-            droneMap.put("LocationY", Double.toString(drone.getLocation().getLongitude()));
+            droneMap.put("LocationX", Double.toString(drone.getLocation().getX()));
+            droneMap.put("LocationY", Double.toString(drone.getLocation().getY()));
             for (Package pack : packages) {
                 if (pack.getOrderNumber() != null) {
                     droneMap.put("packageID", pack.getOrderNumber());
@@ -177,8 +177,8 @@ public class ObjectsConverter {
         for(Depot depot: depots) {
             Map<String, String> depotMap = new HashMap<>();
             depotMap.put("DepotID", depot.getDepotID());
-            depotMap.put("LocationX", Double.toString(depot.getDepotLocation().getLatitude()));
-            depotMap.put("LocationY", Double.toString(depot.getDepotLocation().getLatitude()));
+            depotMap.put("LocationX", Double.toString(depot.getDepotLocation().getX()));
+            depotMap.put("LocationY", Double.toString(depot.getDepotLocation().getY()));
 
             for (int i = 0; i < packages.size(); i++) {
                 depotMap.put("Package" + i, packages.get(i).getOrderNumber());

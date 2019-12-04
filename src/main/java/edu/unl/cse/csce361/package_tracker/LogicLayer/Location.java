@@ -2,30 +2,36 @@ package edu.unl.cse.csce361.package_tracker.LogicLayer;
 
 public class Location {
 
-    public Location(double longitude, double latitude) {
-        this.longitude = longitude;
-        this.latitude = latitude;
+    public Location(double x, double y) {
+        this.x = x;
+        this.y = y;
     }
 
     public Location(){
 
     }
-    private double longitude;
-    private double latitude;
+    private double x;
+    private double y;
 
-    public double getLongitude() {
-        return longitude;
+    public double getX() {
+        return x;
     }
 
-    public void setLongitude(double longitude) {
-        this.longitude = longitude;
+    public void setX(double x) {
+        this.x = x;
     }
 
-    public double getLatitude() {
-        return latitude;
+    public double getY() {
+        return y;
     }
 
-    public void setLatitude(double latitude) {
-        this.latitude = latitude;
+    public void setY(double y) {
+        this.y = y;
+    }
+
+    @Override
+    public String toString(){
+        String locationString = this.y + ", " + this.x;
+        return locationString;
     }
 }

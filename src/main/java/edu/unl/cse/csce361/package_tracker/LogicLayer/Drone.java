@@ -50,8 +50,8 @@ public class Drone {
     }
 
     @Override
-    public String toString(){
-        String droneString = this.droneID + ", " + this.status + ", " + this.location.toString() + ", " + this.shipment.toString();
-        return droneString;
+    public String toString() {
+        return "droneID='" + droneID + '\'' +
+                ", status='" + status + '\'';
     }
 }

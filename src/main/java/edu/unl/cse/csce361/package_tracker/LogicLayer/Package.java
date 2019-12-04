@@ -8,9 +8,13 @@ public class Package {
     private String status;
 
 
+    @Override
+    public String toString() {
+        return "OrderNumber='" + OrderNumber + '\'' +
+                ", status='" + status + '\'';
+    }
 
-
-    public Package(String orderNumber, Location destination ,Location origin, String status  ) {
+    public Package(String orderNumber, Location destination , Location origin, String status  ) {
         this.OrderNumber = orderNumber;
         this.destination = destination;
         this.origin = origin;

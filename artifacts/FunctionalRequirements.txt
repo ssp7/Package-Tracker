@@ -1,0 +1,17 @@
+Functional Requirements
+
+When a customer needs a package to be delivered, a SUAS is dispatched from a nearby depot to pick up the package.
+
+When a SUAS with a package arrives at a depot, the package is handed off to another SUAS which will carry the package to the next depot or the destination (if the destination is within range).
+
+A customer (both the sender and the receiver) should be able to observe the status of a delivery, to include the point of origin and the destination, when the SUAS was dispatched, when the SUAS picked up the package, when the package was handed off to another SUAS at each depot visited, and when the package was delivered.
+
+A customer should also be able to generate a delivery request, which will cause a SUAS to be dispatched automatically to pick up the package.
+
+The Bohn's Drones staff should be able to observe where each SUAS is, whether at a depot, between depots, en route to/from a customer, or at a customer's location. 
+
+The staff should be able to observe which package is aboard which SUAS
+
+Just as the customers can, the staff should be able to observe a package's status.
+ 
+While dispatching a SUAS to pick up a package is automatic, the staff should be able to dispatch an empty SUAS from one depot to another.

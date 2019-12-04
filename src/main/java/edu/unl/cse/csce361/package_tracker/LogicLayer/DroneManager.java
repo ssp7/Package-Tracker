@@ -40,7 +40,7 @@ public class DroneManager {
         }
 
     }
-    public static void InitializeDrone(){
+    public static void initializeDrone(){
 
         droneList = Database.readDrones();
     }

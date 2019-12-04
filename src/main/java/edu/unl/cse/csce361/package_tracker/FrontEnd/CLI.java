@@ -44,7 +44,7 @@ public class CLI {
     public void run() {
         //initialize data
         PackageManager.initializePackage();
-        DroneManager.InitializeDrone();
+        DroneManager.initializeDrone();
         DepotManager.initializeDepot();
         System.out.println("    ____        __         _          ____                            \n" +
                 "   / __ )____  / /_  ____ ( )_____   / __ \\_________  ____  ___  _____\n" +

@@ -48,4 +48,10 @@ public class Drone {
     public void setShipment(Package shipment) {
         this.shipment = shipment;
     }
+
+    @Override
+    public String toString() {
+        return "droneID='" + droneID + '\'' +
+                ", status='" + status + '\'';
+    }
 }

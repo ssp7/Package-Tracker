@@ -19,4 +19,5 @@ public class DepotManager {
     public static void initializeDepot(){
       depotList = Database.readDepots();
     }
+
 }

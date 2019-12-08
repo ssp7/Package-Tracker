@@ -142,12 +142,13 @@ public class ObjectsConverter {
             packageMap.put("OrderNumber", pack.getOrderNumber());
             packageMap.put("DestinationX", Double.toString(pack.getDestination().getX()));
             packageMap.put("DestinationY", Double.toString(pack.getDestination().getY()));
-            packageMap.put("OriginX", Double.toString(pack.getOrigin().getY()));
-            packageMap.put("OriginY", Double.toString(pack.getOrigin().getX()));
+            packageMap.put("OriginX", Double.toString(pack.getOrigin().getX()));
+            packageMap.put("OriginY", Double.toString(pack.getOrigin().getY()));
             packageMap.put("PackageStatus", pack.getStatus());
             data.add(packageMap);
-        }
 
+        }
+          System.out.println(data);
         boolean check = CSVReaderWriter.writeCSV(filename, data);
 
         return check;
@@ -173,6 +174,7 @@ public class ObjectsConverter {
     }
 
     public static boolean writeDepot(List<Depot> depots, List<Package> packages, List<Drone> drones, String filename) {
+
         Set<Map<String,String>> data = new HashSet<Map<String,String>>();
         for(Depot depot: depots) {
             Map<String, String> depotMap = new HashMap<>();
@@ -191,4 +193,19 @@ public class ObjectsConverter {
         boolean check = CSVReaderWriter.writeCSV(filename, data);
         return check;
     }
+
+    public static void main(String[] args){
+        List<Drone> droneList = new ArrayList<>();
+       droneList =  parseDrone("Drones.csv");
+        List<Package> packageList = new ArrayList<>();
+        packageList = parsePackage("Packages.csv");
+        List<Depot> depotList = new ArrayList<>();
+        depotList = parseDepot("depots.csv");
+      boolean check =  writeDepot(depotList,packageList,droneList,"test.csv");
+
+       System.out.println(check);
+//       List<Package> textList = new ArrayList<>();
+//       packageList = parsePackage("text.csv");
+    }
+
 }

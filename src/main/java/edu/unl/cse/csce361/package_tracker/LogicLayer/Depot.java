@@ -12,9 +12,6 @@ public class Depot {
         this.depotID = DepotID;
     }
 
-    public Depot(){
-
-    }
 
     private List<Drone> droneList;
     private List<Package> packageQueue;
@@ -53,4 +50,10 @@ public class Depot {
         this.depotID = depotID;
     }
 
+    @Override
+    public String toString() {
+        return "Depots are :- " +
+                " depotLocation = "  + depotLocation +
+                " depotID =  " + depotID + '\'';
+    }
 }

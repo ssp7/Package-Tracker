@@ -52,8 +52,6 @@ public class Depot {
 
     @Override
     public String toString() {
-        return "Depots are :- " +
-                " depotLocation = "  + depotLocation +
-                " depotID =  " + depotID + '\'';
+        return "Depot Id :- " + depotID + ", Depot Location :- ( " + depotLocation.getX() + " ," + depotLocation.getY() + ")";
     }
 }

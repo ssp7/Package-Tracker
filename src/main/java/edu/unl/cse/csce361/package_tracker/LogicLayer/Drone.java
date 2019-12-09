@@ -51,7 +51,6 @@ public class Drone {
 
     @Override
     public String toString() {
-        return "droneID='" + droneID + '\'' +
-                ", status='" + status + '\'';
+        return "droneID = " + droneID +", status = " + status;
     }
 }

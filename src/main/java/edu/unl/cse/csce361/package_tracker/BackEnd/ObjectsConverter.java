@@ -123,7 +123,7 @@ public class ObjectsConverter {
 
             Location l = new Location(LocationX, LocationY);
 
-            String packageId = m.get("packageId");
+            String packageId = m.get("packageID");
             if (packageId != null && !packageId.isEmpty()) {
                 p = PackageManager.getPackage(packageId);
             }
@@ -195,17 +195,7 @@ public class ObjectsConverter {
     }
 
     public static void main(String[] args){
-        List<Drone> droneList = new ArrayList<>();
-       droneList =  parseDrone("Drones.csv");
-        List<Package> packageList = new ArrayList<>();
-        packageList = parsePackage("Packages.csv");
-        List<Depot> depotList = new ArrayList<>();
-        depotList = parseDepot("depots.csv");
-      boolean check =  writeDepot(depotList,packageList,droneList,"test.csv");
-
-       System.out.println(check);
-//       List<Package> textList = new ArrayList<>();
-//       packageList = parsePackage("text.csv");
+       parseDrone("Drones.csv");
     }
 
 }

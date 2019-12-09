@@ -31,7 +31,7 @@ public class Location {
 
     @Override
     public String toString() {
-        String locationString = this.y + ", " + this.x;
+        String locationString = this.x + ", " + this.y;
         return locationString;
     }
 

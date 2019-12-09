@@ -20,4 +20,15 @@ public class DepotManager {
       depotList = Database.readDepots();
     }
 
+    public static boolean isInRange(Location location){
+        boolean inRange = false;
+        for(Depot depot : depotList){
+            if(Location.DistanceWithinMiles(location, depot.getDepotLocation())){
+                inRange = true;
+            }
+        }
+
+        return inRange;
+    }
+
 }

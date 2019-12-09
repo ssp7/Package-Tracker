@@ -14,7 +14,7 @@ public class ObjectsConverter {
 
         for (Map<String, String> m : packageSet) {
 
-            String packageNumber = m.get("OrderNumber");
+            String packageNumber = m.get("PackageID");
             Double DestinationX = Double.parseDouble(m.get("DestinationX"));
             Double DestinationY = Double.parseDouble(m.get("DestinationY"));
             Double OriginX = Double.parseDouble(m.get("OriginX"));
@@ -139,7 +139,7 @@ public class ObjectsConverter {
 
         for (Package pack : packages) {
             Map<String, String> packageMap = new HashMap<>();
-            packageMap.put("OrderNumber", pack.getOrderNumber());
+            packageMap.put("PackageID", pack.getOrderNumber());
             packageMap.put("DestinationX", Double.toString(pack.getDestination().getX()));
             packageMap.put("DestinationY", Double.toString(pack.getDestination().getY()));
             packageMap.put("OriginX", Double.toString(pack.getOrigin().getX()));

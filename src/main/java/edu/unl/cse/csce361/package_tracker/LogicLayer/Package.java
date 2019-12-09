@@ -14,8 +14,8 @@ public class Package {
                 ", status='" + status + '\'';
     }
 
-    public Package(String orderNumber, Location destination , Location origin, String status  ) {
-        this.OrderNumber = orderNumber;
+    public Package(String packageID, Location destination , Location origin, String status  ) {
+        this.OrderNumber = packageID;
         this.destination = destination;
         this.origin = origin;
         this.status = status;

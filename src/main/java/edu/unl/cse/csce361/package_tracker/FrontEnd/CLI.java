@@ -1,6 +1,7 @@
 package edu.unl.cse.csce361.package_tracker.FrontEnd;
 
 import edu.unl.cse.csce361.package_tracker.Commands.*;
+import edu.unl.cse.csce361.package_tracker.LogicLayer.DataWriter;
 import edu.unl.cse.csce361.package_tracker.LogicLayer.DepotManager;
 import edu.unl.cse.csce361.package_tracker.LogicLayer.DroneManager;
 import edu.unl.cse.csce361.package_tracker.LogicLayer.PackageManager;
@@ -58,6 +59,7 @@ public class CLI {
             int input = scan.nextInt();
 
             commands.get(input).execute();
+            DataWriter.DataBackup();
         }
 
     }

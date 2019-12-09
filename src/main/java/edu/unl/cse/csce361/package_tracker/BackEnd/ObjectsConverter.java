@@ -124,7 +124,7 @@ public class ObjectsConverter {
             Location l = new Location(LocationX, LocationY);
 
             String packageId = m.get("packageID");
-            if (packageId != null && !packageId.isEmpty()) {
+            if (packageId != null && packageId.length()>0) {
                 p = PackageManager.getPackage(packageId);
             }
 
@@ -139,7 +139,7 @@ public class ObjectsConverter {
 
         for (Package pack : packages) {
             Map<String, String> packageMap = new HashMap<>();
-            packageMap.put("PackageID", pack.getOrderNumber());
+            packageMap.put("OrderNumber", pack.getOrderNumber());
             packageMap.put("DestinationX", Double.toString(pack.getDestination().getX()));
             packageMap.put("DestinationY", Double.toString(pack.getDestination().getY()));
             packageMap.put("OriginX", Double.toString(pack.getOrigin().getX()));
@@ -154,7 +154,7 @@ public class ObjectsConverter {
         return check;
     }
 
-    public static boolean writeDrones(List<Drone> drones, List<Package> packages, String filename) {
+    public static boolean writeDrones(List<Drone> drones, String filename) {
         Set<Map<String, String>> data = new HashSet<Map<String, String>>();
         for (Drone drone : drones) {
             Map<String, String> droneMap = new HashMap<>();
@@ -162,18 +162,15 @@ public class ObjectsConverter {
             droneMap.put("Status", drone.getStatus());
             droneMap.put("LocationX", Double.toString(drone.getLocation().getX()));
             droneMap.put("LocationY", Double.toString(drone.getLocation().getY()));
-            for (Package pack : packages) {
-                if (pack.getOrderNumber() != null) {
-                    droneMap.put("packageID", pack.getOrderNumber());
-                }
-            }
+            droneMap.put("PackageID",drone.getShipment().getOrderNumber());
             data.add(droneMap);
         }
         boolean check = CSVReaderWriter.writeCSV(filename, data);
         return check;
     }
 
-    public static boolean writeDepot(List<Depot> depots, List<Package> packages, List<Drone> drones, String filename) {
+    public static boolean writeDepot(List<Depot> depots, String filename){
+
 
         Set<Map<String,String>> data = new HashSet<Map<String,String>>();
         for(Depot depot: depots) {
@@ -181,12 +178,10 @@ public class ObjectsConverter {
             depotMap.put("DepotID", depot.getDepotID());
             depotMap.put("LocationX", Double.toString(depot.getDepotLocation().getX()));
             depotMap.put("LocationY", Double.toString(depot.getDepotLocation().getY()));
+            for(int i = 0; i< depot.getDroneList().size(); i++) {
+                depotMap.put("Package"+i+1, depot.getDroneList().get(i).getShipment().getOrderNumber());
+                depotMap.put("Drone" + i+1, depot.getDroneList().get(i).getDroneID());
 
-            for (int i = 0; i < packages.size(); i++) {
-                depotMap.put("Package" + i, packages.get(i).getOrderNumber());
-            }
-            for (int j = 0; j < drones.size(); j++) {
-                depotMap.put("Drone" + j, drones.get(j).getDroneID());
             }
             data.add(depotMap);
         }
@@ -194,8 +189,5 @@ public class ObjectsConverter {
         return check;
     }
 
-    public static void main(String[] args){
-       parseDrone("Drones.csv");
-    }
 
 }

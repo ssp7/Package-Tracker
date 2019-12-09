@@ -42,7 +42,6 @@ public class DroneManager {
 
     }
     public static void initializeDrone(){
-
         droneList = Database.readDrones();
     }
     public static void droneDispatch() {

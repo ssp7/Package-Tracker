@@ -18,8 +18,11 @@ public class PackageManager {
      */
     public static Package getPackage(String orderNumber){
         for(Package order : packageList){
-            if(order.getOrderNumber().equals(orderNumber)){
+            if(order.getOrderNumber().equalsIgnoreCase(orderNumber)){
                 return order;
+            }
+            else {
+                return null;
             }
         }
 

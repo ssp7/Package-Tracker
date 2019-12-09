@@ -36,6 +36,7 @@ public class CLI {
         addCommand(new ExitCommand(this));
         addCommand(new CheckDroneStatus());
         addCommand(new CheckPackageStatus());
+        addCommand(new DispatchDrone());
         addCommand(new PackageRequest());
     }
 

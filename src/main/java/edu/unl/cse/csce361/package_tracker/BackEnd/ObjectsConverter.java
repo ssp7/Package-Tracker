@@ -19,12 +19,16 @@ public class ObjectsConverter {
             Double DestinationY = Double.parseDouble(m.get("DestinationY"));
             Double OriginX = Double.parseDouble(m.get("OriginX"));
             Double OriginY = Double.parseDouble(m.get("OriginY"));
+            Double currentX = Double.parseDouble(m.get("CurrentX"));
+            Double currentY = Double.parseDouble(m.get("CurrentY"));
+
             String Status = m.get("PackageStatus");
 
             Location Destinations = new Location(DestinationX, DestinationY);
             Location Origins = new Location(OriginX, OriginY);
+            Location currentLocation = new Location(currentX,currentY);
 
-            Package pack = new Package(packageNumber, Destinations, Origins, Status);
+            Package pack = new Package(packageNumber, Destinations, Origins,currentLocation, Status);
 
             packages.add(pack);
         }
@@ -36,71 +40,14 @@ public class ObjectsConverter {
 
         Set<Map<String, String>> depotSet = CSVReaderWriter.readCSV(filename);
         List<Depot> depots = new ArrayList<Depot>();
-
-
         for (Map<String, String> m : depotSet) {
-
-            List<Drone> d = new ArrayList<Drone>();
-            List<Package> p = new ArrayList<Package>();
-
             String depotNumber = m.get("DepotID");
             Double LocationX = Double.parseDouble(m.get("LocationX"));
             Double LocationY = Double.parseDouble(m.get("LocationY"));
 
             Location l = new Location(LocationX, LocationY);
 
-            String package1 = m.get("Package1");
-            if (package1 != null && !package1.isEmpty()) {
-                Package p1 = PackageManager.getPackage(package1);
-                p.add(p1);
-            }
-            String package2 = m.get("Package2");
-            if (package2 != null && !package2.isEmpty()) {
-                Package p2 = PackageManager.getPackage(package2);
-                p.add(p2);
-            }
-            String package3 = m.get("Package3");
-            if (package3 != null && !package3.isEmpty()) {
-                Package p3 = PackageManager.getPackage(package3);
-                p.add(p3);
-            }
-            String package4 = m.get("Package4");
-            if (package4 != null && !package4.isEmpty()) {
-                Package p4 = PackageManager.getPackage(package4);
-                p.add(p4);
-            }
-            String package5 = m.get("Package5");
-            if (package5 != null && !package5.isEmpty()) {
-                Package p5 = PackageManager.getPackage(package5);
-                p.add(p5);
-            }
-            String Drone1 = m.get("Drone1");
-            if (Drone1 != null && !Drone1.isEmpty()) {
-                Drone d1 = DroneManager.getDrone(Drone1);
-                d.add(d1);
-            }
-            String Drone2 = m.get("Drone2");
-            if (Drone2 != null && !Drone2.isEmpty()) {
-                Drone d2 = DroneManager.getDrone(Drone2);
-                d.add(d2);
-            }
-            String Drone3 = m.get("Drone3");
-            if (Drone3 != null && !Drone3.isEmpty()) {
-                Drone d3 = DroneManager.getDrone(Drone3);
-                d.add(d3);
-            }
-            String Drone4 = m.get("Drone4");
-            if (Drone4 != null && !Drone4.isEmpty()) {
-                Drone d4 = DroneManager.getDrone(Drone4);
-                d.add(d4);
-            }
-            String Drone5 = m.get("Drone5");
-            if (Drone5 != null && !Drone5.isEmpty()) {
-                Drone d5 = DroneManager.getDrone(Drone5);
-                d.add(d5);
-            }
-
-            Depot de = new Depot(d, p, l, depotNumber);
+            Depot de = new Depot(l, depotNumber);
 
             depots.add(de);
         }
@@ -178,11 +125,6 @@ public class ObjectsConverter {
             depotMap.put("DepotID", depot.getDepotID());
             depotMap.put("LocationX", Double.toString(depot.getDepotLocation().getX()));
             depotMap.put("LocationY", Double.toString(depot.getDepotLocation().getY()));
-            for(int i = 0; i< depot.getDroneList().size(); i++) {
-                depotMap.put("Package"+i+1, depot.getDroneList().get(i).getShipment().getOrderNumber());
-                depotMap.put("Drone" + i+1, depot.getDroneList().get(i).getDroneID());
-
-            }
             data.add(depotMap);
         }
         boolean check = CSVReaderWriter.writeCSV(filename, data);

@@ -18,6 +18,16 @@ public class DepotManager {
         }
         return null;
     }
+
+    public static Depot getDepot(Location depotLocation){
+        for(Depot depot : depotList){
+            if(depot.getDepotLocation().equals(depotLocation)){
+                return depot;
+            }
+        }
+        return null;
+    }
+
     public static void initializeDepot() {
         depotList = Database.readDepots();
     }

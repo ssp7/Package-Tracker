@@ -64,11 +64,12 @@ public class PackageManager {
         Double originLocationY;
         Location origin = new Location();
         Location destination = new Location();
+        Location current  = new Location();
         Double DestinationLocationX;
         Double DestinationLocationY;
 
         boolean packageDistanceOrigin = false;
-        boolean packageDisatnceDestination = false;
+        boolean packageDistanceDestination = false;
         //Scanner declared
         Scanner scan = new Scanner(System.in);
         //The method main source code
@@ -94,16 +95,16 @@ public class PackageManager {
 
         System.out.println("Please input the Destination Location of your package with a decimal point");
 
-        while(packageDisatnceDestination) {
+        while(packageDistanceDestination) {
 
             DestinationLocationX = Double.parseDouble(scan.nextLine());
             DestinationLocationY = Double.parseDouble(scan.nextLine());
 
             destination = new Location(DestinationLocationX, DestinationLocationY);
 
-            packageDisatnceDestination = DepotManager.isInRange(destination);
+            packageDistanceDestination = DepotManager.isInRange(destination);
 
-            if(!packageDisatnceDestination){
+            if(!packageDistanceDestination){
                 System.out.println("The location for the destination of the package is not in range of any SUAS to be delivered");
                 System.out.println("Input the destination location again such that it is in range");
             }
@@ -111,7 +112,7 @@ public class PackageManager {
 
         }
 
-        Package p = new Package(PackageID, destination, origin,"Not Picked up");
+        Package p = new Package(PackageID, destination, origin,origin,"Not Picked up");
 
         packageList.add(p);
 

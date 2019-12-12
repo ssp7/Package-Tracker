@@ -1,6 +1,8 @@
 package edu.unl.cse.csce361.package_tracker.LogicLayer;
 
+import com.sun.xml.internal.bind.v2.runtime.reflect.Lister;
 import edu.unl.cse.csce361.package_tracker.BackEnd.Database;
+import edu.unl.cse.csce361.package_tracker.Commands.PackageRequest;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -128,4 +130,97 @@ public class DroneManager {
         nextDrone.setLocation(originalDepotLocation);
         System.out.println("Drone has arrived back at the Depot");
     }
+
+    //TODO: pickup package command
+    public static void pickUpPackage(){
+        Package packageToPickup = null;
+        System.out.println("Packages waiting to be picked up:");
+        int waitingPackages = 0;
+        for(Package shipment : PackageManager.packageList){
+            if(shipment.getStatus().equals("Waiting for pickup")){
+                System.out.println(shipment);
+                waitingPackages++;
+            }
+        }
+
+        if(waitingPackages == 0){
+            System.out.println("No packages to pick up.");
+            return;
+        }
+
+        boolean validPackage = false;
+        while (!validPackage){
+            System.out.println("Enter a package ID to deploy a drone:");
+            String packageID = scan.nextLine();
+            packageToPickup = PackageManager.getPackage(packageID);
+            if(packageToPickup !=null){
+                validPackage = true;
+            }
+        }
+
+        System.out.println("Package "+packageToPickup.getOrderNumber()+ " selected.");
+        //look for available drones
+        Location packageLocation = packageToPickup.getCurrentLocation();
+        boolean droneAvailable = false;
+        Drone deliveryDrone = null;
+        for(Drone drone : droneList){ //check drones around package
+            if(Location.DistanceWithinMiles(packageLocation, drone.getLocation())){
+                droneAvailable = true;
+                deliveryDrone = drone;
+                break;
+            }
+        }
+
+        if(!droneAvailable){ //check drones around depots near package
+            //find a drone
+            System.out.println("No drone in proximity, routing drone to nearest depot");
+            //get nearest depot
+            for(Depot depot : DepotManager.depotList){
+                if(Location.DistanceWithinMiles(depot.getDepotLocation(),packageLocation)){
+                    for(Drone drone : droneList){
+                        if(Location.DistanceWithinMiles(packageLocation, drone.getLocation()) && drone.getStatus().equals("In Depot")){
+                            deliveryDrone = drone;
+                            break;
+                        }
+                    }
+                }
+                if(deliveryDrone != null){
+                    System.out.println("Routing drone "+ deliveryDrone.getDroneID()+ "to depot "+ depot.getDepotID()+".");
+                    deliveryDrone.setLocation(depot.getDepotLocation()); //fly the drone to the depot.
+                    break;
+                }
+            }
+        }
+
+        //deploy drone
+        if(deliveryDrone != null){
+            System.out.println("Deploying drone " + deliveryDrone.getDroneID()+ ".");
+            Location droneLocation = deliveryDrone.getLocation();
+            System.out.println("Drone flying from: "+droneLocation);
+            deliveryDrone.setLocation(packageLocation);  //fly to package
+            deliveryDrone.setShipment(packageToPickup);  //pick up package
+            packageToPickup.setStatus("In transit");
+            deliveryDrone.setStatus("En Route");
+            System.out.println(deliveryDrone); //display drone.
+            deliveryDrone.setLocation(droneLocation);    //fly back to depot
+            packageToPickup.setCurrentLocation(droneLocation); //put the package in the depot
+            packageToPickup.setStatus("In Depot");
+            deliveryDrone.setStatus("In Depot");
+            //find out what depot it flew to.
+
+
+            Depot depot =  DepotManager.getDepot(droneLocation);
+            System.out.println("Package delivered to depot "+ depot.getDepotID()+".");
+        }
+    }
+
+//    public static void main(String[] args) {
+//        Database.initializeData();
+//
+//        PackageRequest packageRequest = new PackageRequest();
+//        packageRequest.execute();
+//
+//        pickupPackage();
+//    }
+
 }

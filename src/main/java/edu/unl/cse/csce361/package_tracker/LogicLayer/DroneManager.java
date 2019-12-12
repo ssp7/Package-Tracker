@@ -107,8 +107,7 @@ public class DroneManager {
     }
 
     //TODO: pickup package command
-    public static void pickupPackage(){
-        boolean success = false;
+    public static void pickUpPackage(){
         Package packageToPickup = null;
         System.out.println("Packages waiting to be picked up:");
         int waitingPackages = 0;
@@ -124,12 +123,17 @@ public class DroneManager {
             return;
         }
 
-        System.out.println("Enter a package ID to deploy a drone:");
-        do { // loop input until valid.
+        boolean validPackage = false;
+        while (!validPackage){
+            System.out.println("Enter a package ID to deploy a drone:");
             String packageID = scan.nextLine();
             packageToPickup = PackageManager.getPackage(packageID);
-        } while (packageToPickup == null);
+            if(packageToPickup !=null){
+                validPackage = true;
+            }
+        }
 
+        System.out.println("Package "+packageToPickup.getOrderNumber()+ " selected.");
         //look for available drones
         Location packageLocation = packageToPickup.getCurrentLocation();
         boolean droneAvailable = false;
@@ -167,6 +171,7 @@ public class DroneManager {
         if(deliveryDrone != null){
             System.out.println("Deploying drone " + deliveryDrone.getDroneID()+ ".");
             Location droneLocation = deliveryDrone.getLocation();
+            System.out.println("Drone flying from: "+droneLocation);
             deliveryDrone.setLocation(packageLocation);  //fly to package
             deliveryDrone.setShipment(packageToPickup);  //pick up package
             packageToPickup.setStatus("In transit");
@@ -177,16 +182,20 @@ public class DroneManager {
             packageToPickup.setStatus("In Depot");
             deliveryDrone.setStatus("In Depot");
             //find out what depot it flew to.
+
+
             Depot depot =  DepotManager.getDepot(droneLocation);
             System.out.println("Package delivered to depot "+ depot.getDepotID()+".");
         }
     }
 
-    public static void main(String[] args) {
-        PackageRequest packageRequest = new PackageRequest();
-        packageRequest.execute();
-
-        pickupPackage();
-    }
+//    public static void main(String[] args) {
+//        Database.initializeData();
+//
+//        PackageRequest packageRequest = new PackageRequest();
+//        packageRequest.execute();
+//
+//        pickupPackage();
+//    }
 
 }

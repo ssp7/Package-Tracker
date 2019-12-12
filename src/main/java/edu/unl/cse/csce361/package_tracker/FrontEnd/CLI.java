@@ -39,6 +39,7 @@ public class CLI {
         addCommand(new CheckPackageStatus());
         addCommand(new DispatchDrone());
         addCommand(new PackageRequest());
+        addCommand(new PickUpPackage());
     }
 
     public void run() {

@@ -18,11 +18,8 @@ public class PackageManager {
      */
     public static Package getPackage(String orderNumber){
         for(Package order : packageList){
-            if(order.getOrderNumber().equalsIgnoreCase(orderNumber)){
+            if(order.getOrderNumber().equals(orderNumber)){
                 return order;
-            }
-            else {
-                return null;
             }
         }
 
@@ -78,10 +75,11 @@ public class PackageManager {
         String PackageID = scan.nextLine();
         System.out.println("Please input the Origin location with a decimal point");
 
-        while(packageDistanceOrigin != true) {
-
-             originLocationX = Double.parseDouble(scan.nextLine());
-             originLocationY = Double.parseDouble(scan.nextLine());
+        while(!packageDistanceOrigin) {
+            System.out.print("X:");
+            originLocationX = Double.parseDouble(scan.nextLine());
+            System.out.print("Y:");
+            originLocationY = Double.parseDouble(scan.nextLine());
 
             origin = new Location(originLocationX, originLocationY);
 
@@ -95,9 +93,11 @@ public class PackageManager {
 
         System.out.println("Please input the Destination Location of your package with a decimal point");
 
-        while(packageDistanceDestination) {
+        while(!packageDistanceDestination) {
 
+            System.out.print("X:");
             DestinationLocationX = Double.parseDouble(scan.nextLine());
+            System.out.print("Y:");
             DestinationLocationY = Double.parseDouble(scan.nextLine());
 
             destination = new Location(DestinationLocationX, DestinationLocationY);
@@ -115,6 +115,6 @@ public class PackageManager {
         Package p = new Package(PackageID, destination, origin,origin,"Waiting for pickup");
 
         packageList.add(p);
-
+        System.out.println("Package request created for order number "+ p.getOrderNumber() +"!");
     }
 }

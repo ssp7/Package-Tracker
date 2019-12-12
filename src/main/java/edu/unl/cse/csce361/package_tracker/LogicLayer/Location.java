@@ -123,11 +123,11 @@ public class Location {
 
         }
         Location depotLocation = d.getDepotLocation();
-        Double depotX = depotLocation.getX();
-        Double depotY = depotLocation.getY();
+        double depotX = depotLocation.getX();
+        double depotY = depotLocation.getY();
 
-        Double packageLocationX;
-        Double packageLocationY;
+        double packageLocationX;
+        double packageLocationY;
 
         for (Package p : PackageManager.packageList){
             Location packageLocation = p.getCurrentLocation();
@@ -163,11 +163,11 @@ public class Location {
 
         }
         Location depotLocation = d.getDepotLocation();
-        Double depotX = depotLocation.getX();
-        Double depotY = depotLocation.getY();
+        double depotX = depotLocation.getX();
+        double depotY = depotLocation.getY();
 
-        Double depotLocationX;
-        Double depotLocationY;
+        double depotLocationX;
+        double depotLocationY;
 
         for (Drone dr : DroneManager.droneList){
             Location depotLocations = dr.getLocation();
@@ -183,4 +183,7 @@ public class Location {
         return droneListAtDepot;
     }
 
+    public boolean equals(Location obj) {
+        return this.x == obj.x && this.y == obj.y;
+    }
 }

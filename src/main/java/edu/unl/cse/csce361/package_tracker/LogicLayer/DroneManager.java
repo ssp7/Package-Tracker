@@ -103,25 +103,26 @@ public class DroneManager {
         }
     }
 
-    public package deliverPackage(Package package){
-        Location originalDepotLocation = package.CurrentLocation()
+    public void deliverPackage(Package shipment){
+        Location originalDepotLocation = shipment.getCurrentLocation();
+        Depot nextDepot = null;
         for(Drone d: droneList){
-            if (d.getShipment() == package){
-                Depot nextDepot = DepotManager.getNextClosestDepot(d.getLocation(), package.getDestination());
-
+            if (d.getShipment() == null){
+                nextDepot = DepotManager.getNextClosestDepot(d.getLocation(), shipment.getDestination());
             }
         }
+        Drone nextDrone = null;
         for (Drone d: droneList){
-            if(d.getLocation() == package.getCurrentLocation()){
-                Drone nextDrone = d;
+            if(d.getLocation().equals(shipment.getCurrentLocation())){
+                nextDrone = d;
             }
         }
         System.out.println("Drone is picking up package from depot to head to the destination.");
-        nextDrone.setShipment(package);
-        nextDrone.setLocation(package.getDestination());
-        package.setCurrentLocation(package.getDestination());
-        System.out.println("Drone has arrived at destinationn with package: " + package.getOrderNumber());
-        package.setStatus("Delivered");
+        nextDrone.setShipment(shipment);
+        nextDrone.setLocation(shipment.getDestination());
+        shipment.setCurrentLocation(shipment.getDestination());
+        System.out.println("Drone has arrived at destinationn with package: " + shipment.getOrderNumber());
+        shipment.setStatus("Delivered");
 
         nextDrone.setShipment(null);
         nextDrone.setLocation(originalDepotLocation);

@@ -111,7 +111,7 @@ public class PackageManager {
 
         }
 
-        Package p = new Package(PackageID, destination, origin,"Not Picked up");
+        Package p = new Package(PackageID, destination, origin,origin,"Not Picked up");
 
         packageList.add(p);
 

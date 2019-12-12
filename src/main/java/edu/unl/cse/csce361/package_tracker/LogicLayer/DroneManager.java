@@ -44,6 +44,7 @@ public class DroneManager {
     public static void initializeDrone(){
         droneList = Database.readDrones();
     }
+
     public static void droneDispatch() {
         System.out.println("Here is the list of Drones please select which drone you want to dispatch by entering the droneID or enter CANCEL ");
         for (int i = 0; i < droneList.size(); i++) {
@@ -68,7 +69,6 @@ public class DroneManager {
                 droneId = scan.nextLine();
             }
         }
-
         boolean depotCheck = false;
         while (depotCheck == false) {
             System.out.println("Here is the List of all the depots Please select where you want the drone to dispatch");
@@ -101,6 +101,30 @@ public class DroneManager {
               depotCheck = true;
           }
         }
+    }
 
+    public package deliverPackage(Package package){
+        Location originalDepotLocation = package.CurrentLocation()
+        for(Drone d: droneList){
+            if (d.getShipment() == package){
+                Depot nextDepot = DepotManager.getNextClosestDepot(d.getLocation(), package.getDestination());
+
+            }
+        }
+        for (Drone d: droneList){
+            if(d.getLocation() == package.getCurrentLocation()){
+                Drone nextDrone = d;
+            }
+        }
+        System.out.println("Drone is picking up package from depot to head to the destination.");
+        nextDrone.setShipment(package);
+        nextDrone.setLocation(package.getDestination());
+        package.setCurrentLocation(package.getDestination());
+        System.out.println("Drone has arrived at destinationn with package: " + package.getOrderNumber());
+        package.setStatus("Delivered");
+
+        nextDrone.setShipment(null);
+        nextDrone.setLocation(originalDepotLocation);
+        System.out.println("Drone has arrived back at the Depot");
     }
 }

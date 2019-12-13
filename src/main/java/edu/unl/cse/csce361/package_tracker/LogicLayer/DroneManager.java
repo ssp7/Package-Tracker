@@ -243,7 +243,7 @@ public class DroneManager {
         }
         Drone transportDrone = emptyDrones.get(0);
         transportDrone.setLocation(currentDepot.getDepotLocation());
-        System.out.println("Drone is at "+transportDrone.getLocation() + " right now");
+        System.out.println("Drone:"+ transportDrone.getDroneID()+" is at "+transportDrone.getLocation() + " right now");
         System.out.println(transportDrone);
         transportDrone.setShipment(shipment);
         transportDrone.setLocation(destinationDepot.getDepotLocation());
@@ -251,5 +251,13 @@ public class DroneManager {
         shipment.setCurrentLocation(destinationDepot.getDepotLocation());
         System.out.println("The package with Id" + shipment.getOrderNumber() + " is at depot " + destinationDepot.getDepotID());
         shipment.setStatus("In Depot");
+        transportDrone.setShipment(null);
     }
+
+//    public static void main(String[] args) {
+//        Database.initializeData();
+//        Package p = PackageManager.getPackage("AA006");
+//        transferPackage(p);
+//        transferPackage(p);
+//    }
 }

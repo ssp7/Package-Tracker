@@ -72,16 +72,4 @@ public class DepotManager {
 
         return nextDepot;
     }
-
-    public static void main(String[] args) {
-        Database.initializeData();
-        Package p = PackageManager.getPackage("AA006");
-        p.getCurrentLocation().setX(0.0);
-        p.getCurrentLocation().setY(0.0);
-
-        p.getDestination().setX(-18);
-        p.getDestination().setY(0.0);
-       Depot d = getNextClosestDepot(p.getCurrentLocation(),p.getDestination());
-        System.out.println(d);
-    }
 }

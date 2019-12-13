@@ -89,13 +89,15 @@ public class ObjectsConverter {
             packageMap.put("OrderNumber", pack.getOrderNumber());
             packageMap.put("DestinationX", Double.toString(pack.getDestination().getX()));
             packageMap.put("DestinationY", Double.toString(pack.getDestination().getY()));
+            packageMap.put("CurrentX",Double.toString(pack.getCurrentLocation().getX()));
+            packageMap.put("CurrentY",Double.toString(pack.getCurrentLocation().getY()));
             packageMap.put("OriginX", Double.toString(pack.getOrigin().getX()));
             packageMap.put("OriginY", Double.toString(pack.getOrigin().getY()));
             packageMap.put("PackageStatus", pack.getStatus());
             data.add(packageMap);
 
         }
-          System.out.println(data);
+
         boolean check = CSVReaderWriter.writeCSV(filename, data);
 
         return check;
@@ -109,7 +111,11 @@ public class ObjectsConverter {
             droneMap.put("Status", drone.getStatus());
             droneMap.put("LocationX", Double.toString(drone.getLocation().getX()));
             droneMap.put("LocationY", Double.toString(drone.getLocation().getY()));
-            droneMap.put("PackageID",drone.getShipment().getOrderNumber());
+            if(drone.getShipment()!=null) {
+                droneMap.put("PackageID", drone.getShipment().getOrderNumber());
+            }else{
+                droneMap.put("PackageID",null);
+            }
             data.add(droneMap);
         }
         boolean check = CSVReaderWriter.writeCSV(filename, data);
@@ -130,6 +136,4 @@ public class ObjectsConverter {
         boolean check = CSVReaderWriter.writeCSV(filename, data);
         return check;
     }
-
-
 }

@@ -1,5 +1,5 @@
 package edu.unl.cse.csce361.package_tracker.LogicLayer;
-
+//manager class for package object
 import edu.unl.cse.csce361.package_tracker.BackEnd.Database;
 
 import java.awt.geom.Point2D;

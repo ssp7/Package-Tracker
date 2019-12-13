@@ -1,6 +1,11 @@
 package edu.unl.cse.csce361.package_tracker;
 
+import edu.unl.cse.csce361.package_tracker.BackEnd.Database;
 import edu.unl.cse.csce361.package_tracker.BackEnd.ObjectsConverter;
+import edu.unl.cse.csce361.package_tracker.Commands.CheckDroneStatus;
+import edu.unl.cse.csce361.package_tracker.Commands.Command;
+import edu.unl.cse.csce361.package_tracker.Commands.ExitCommand;
+import edu.unl.cse.csce361.package_tracker.FrontEnd.CLI;
 import edu.unl.cse.csce361.package_tracker.LogicLayer.Package;
 import org.junit.After;
 import org.junit.Assert;
@@ -11,8 +16,8 @@ import java.util.List;
 
 import static org.junit.Assert.*;
 
-public class ObjectsConverterTest {
-
+public class TestCases {
+    private CLI cli;
     @Before
     public void setUp() throws Exception {
     }
@@ -60,10 +65,18 @@ public class ObjectsConverterTest {
     }
 
     @Test
-    public void writeDrones() {
+    public void Exit() {
+        Database.initializeData();
+        Command c = new ExitCommand(cli);
+        c.execute();
+
     }
 
-    @Test
-    public void writeDepot() {
+    @Test(timeout = 1000)
+    public void CheckDroneStatus() {
+        Database.initializeData();
+        Command c = new CheckDroneStatus();
+
+        c.execute();
     }
 }

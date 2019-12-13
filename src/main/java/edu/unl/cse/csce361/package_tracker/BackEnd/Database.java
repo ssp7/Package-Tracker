@@ -25,7 +25,7 @@ public class Database {
     }
 
     public static List<Depot> readDepots(){
-        return ObjectsConverter.parseDepot("depots.csv");
+        return ObjectsConverter.parseDepot("Depots.csv");
     }
 
     public static void writeDepots(List<Depot> depotList){

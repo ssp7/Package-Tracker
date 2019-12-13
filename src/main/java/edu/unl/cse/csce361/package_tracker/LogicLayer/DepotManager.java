@@ -1,5 +1,5 @@
 package edu.unl.cse.csce361.package_tracker.LogicLayer;
-
+//Manager class for depot object
 import edu.unl.cse.csce361.package_tracker.BackEnd.Database;
 import edu.unl.cse.csce361.package_tracker.BackEnd.ObjectsConverter;
 

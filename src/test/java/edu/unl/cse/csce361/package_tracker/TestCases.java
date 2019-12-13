@@ -70,6 +70,7 @@ public class TestCases {
         Command c = new ExitCommand(cli);
         c.execute();
 
+
     }
 
     @Test(timeout = 1000)

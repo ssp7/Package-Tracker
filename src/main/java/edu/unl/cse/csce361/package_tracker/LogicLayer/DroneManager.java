@@ -104,7 +104,7 @@ public class DroneManager {
         }
     }
 
-    public void deliverPackage(Package shipment){
+    public void deliverToCustomer(Package shipment){
         Location originalDepotLocation = shipment.getCurrentLocation();
         Depot nextDepot = null;
         for(Drone d: droneList){

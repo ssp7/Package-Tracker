@@ -11,8 +11,8 @@ public class Database {
         return ObjectsConverter.parsePackage("Packages.csv");
     }
 
-    public static int writePackages(List<Package> packageList){
-        return 0;
+    public static void writePackages(List<Package> packageList){
+        ObjectsConverter.writePackage(packageList, "PackagesTest.csv");
     }
 
     public static List<Drone> readDrones(){
@@ -20,16 +20,16 @@ public class Database {
 
     }
 
-    public static int writeDrone(List<Drone> droneList){
-        return 0;
+    public static void writeDrone(List<Drone> droneList){
+       ObjectsConverter.writeDrones(droneList, "DronesTest.csv");
     }
 
     public static List<Depot> readDepots(){
-        return ObjectsConverter.parseDepot("Depots.csv");
+        return ObjectsConverter.parseDepot("depots.csv");
     }
 
-    public static int writeDepots(List<Depot> depotList){
-        return 0;
+    public static void writeDepots(List<Depot> depotList){
+        ObjectsConverter.writeDepot(depotList,"DepotTest.csv");
     }
 
     public static void initializeData(){

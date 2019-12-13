@@ -6,7 +6,7 @@ public class Package {
     private Location destination;
     private Location origin;
     private String status;
-
+    private Location currentLocation;
 
     @Override
     public String toString() {
@@ -14,10 +14,11 @@ public class Package {
                 ", status='" + status + '\'';
     }
 
-    public Package(String orderNumber, Location destination , Location origin, String status  ) {
-        this.OrderNumber = orderNumber;
+    public Package(String packageID, Location destination , Location origin, Location currentLocation, String status  ) {
+        this.OrderNumber = packageID;
         this.destination = destination;
         this.origin = origin;
+        this.currentLocation = currentLocation;
         this.status = status;
     }
 
@@ -43,6 +44,12 @@ public class Package {
 
     public void setOrigin(Location origin) {
         this.origin = origin;
+    }
+    public Location getCurrentLocation(){
+        return currentLocation;
+    }
+    public void setCurrentLocation(Location currentLocation){
+        this.currentLocation = currentLocation;
     }
 
     public String getStatus() {

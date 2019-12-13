@@ -2,7 +2,13 @@
 
 ##  Instructions to build and run the program
 
-(Add anything here we'll need to evaluate the functionality)
+Steps to deliver the package:
+1. Make a package request 
+2. Run the pick up package command
+3. Run the move package command:
+    - If the package is in range of it's destination, the package will be delivered
+    - If the package is not in range of it's destination, the package will transfer to the next depot in its route.
+    - Run the move package command until the package is delivered. 
 
 ##  Description
 

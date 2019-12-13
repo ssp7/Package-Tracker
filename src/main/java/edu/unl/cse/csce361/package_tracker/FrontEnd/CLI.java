@@ -1,9 +1,7 @@
 package edu.unl.cse.csce361.package_tracker.FrontEnd;
 
-import edu.unl.cse.csce361.package_tracker.Commands.CheckDroneStatus;
-import edu.unl.cse.csce361.package_tracker.Commands.CheckPackageStatus;
-import edu.unl.cse.csce361.package_tracker.Commands.Command;
-import edu.unl.cse.csce361.package_tracker.Commands.ExitCommand;
+import edu.unl.cse.csce361.package_tracker.Commands.*;
+import edu.unl.cse.csce361.package_tracker.LogicLayer.DataWriter;
 import edu.unl.cse.csce361.package_tracker.LogicLayer.DepotManager;
 import edu.unl.cse.csce361.package_tracker.LogicLayer.DroneManager;
 import edu.unl.cse.csce361.package_tracker.LogicLayer.PackageManager;
@@ -39,6 +37,10 @@ public class CLI {
         addCommand(new ExitCommand(this));
         addCommand(new CheckDroneStatus());
         addCommand(new CheckPackageStatus());
+        addCommand(new DispatchDrone());
+        addCommand(new PackageRequest());
+        addCommand(new PickUpPackage());
+        addCommand(new DeliverPackage());
     }
 
     public void run() {
@@ -59,6 +61,7 @@ public class CLI {
             int input = scan.nextInt();
 
             commands.get(input).execute();
+            DataWriter.DataBackup();
         }
 
     }

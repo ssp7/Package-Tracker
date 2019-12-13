@@ -33,7 +33,7 @@ public class PackageManager {
             System.out.println("No packages");
             return;
         }
-
+        System.out.println("List of package IDs:");
         for(Package order : packageList){
             System.out.println(order.getOrderNumber());
         }

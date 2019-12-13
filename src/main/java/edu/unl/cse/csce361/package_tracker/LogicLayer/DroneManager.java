@@ -27,7 +27,7 @@ public class DroneManager {
             System.out.println("No drones");
             return;
         }
-
+        System.out.println("List of drone IDs:");
         for (Drone drone : droneList) {
             System.out.println(drone.getDroneID());
         }

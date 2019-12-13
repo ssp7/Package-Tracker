@@ -40,6 +40,7 @@ public class CLI {
         addCommand(new DispatchDrone());
         addCommand(new PackageRequest());
         addCommand(new PickUpPackage());
+        addCommand(new DeliverPackage());
     }
 
     public void run() {

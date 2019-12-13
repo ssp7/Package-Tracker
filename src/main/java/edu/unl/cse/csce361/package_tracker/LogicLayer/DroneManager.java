@@ -206,6 +206,7 @@ public class DroneManager {
             packageToPickup.setCurrentLocation(droneLocation); //put the package in the depot
             packageToPickup.setStatus("In Depot");
             deliveryDrone.setStatus("In Depot");
+            deliveryDrone.setShipment(null); // empty drone
             //find out what depot it flew to.
 
 

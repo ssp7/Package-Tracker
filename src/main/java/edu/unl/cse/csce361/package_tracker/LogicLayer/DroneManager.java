@@ -118,16 +118,17 @@ public class DroneManager {
                 nextDrone = d;
             }
         }
-        System.out.println("Drone is picking up package from depot to head to the destination.");
+        System.out.println("Drone is picking up package from depot "+nextDepot.getDepotID() +" to head to the destination.");
         nextDrone.setShipment(shipment);
         nextDrone.setLocation(shipment.getDestination());
         shipment.setCurrentLocation(shipment.getDestination());
-        System.out.println("Drone has arrived at destinationn with package: " + shipment.getOrderNumber());
+        System.out.println("Drone has arrived at destination with package: " + shipment.getOrderNumber());
         shipment.setStatus("Delivered");
+        System.out.println("Package " + shipment.getOrderNumber()+ " has been delivered to "+ shipment.getDestination()+".");
 
         nextDrone.setShipment(null);
         nextDrone.setLocation(originalDepotLocation);
-        System.out.println("Drone has arrived back at the Depot");
+        //System.out.println("Drone has arrived back at the Depot");
     }
 
     //TODO: pickup package command

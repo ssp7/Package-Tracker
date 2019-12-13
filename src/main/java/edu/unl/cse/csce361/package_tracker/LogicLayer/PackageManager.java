@@ -174,9 +174,9 @@ public class PackageManager {
             } else {
                 //moves package from depot to destination
                 //deliver package
-                System.out.println("Package is going to be delivered to the final destination");
+                System.out.println("Package is going to be delivered to the final destination.");
                 DroneManager.deliverToCustomer(shipment);
-                System.out.println("Package has been delivered!!");
+                //System.out.println("Package has been delivered!!");
             }
         }
     }

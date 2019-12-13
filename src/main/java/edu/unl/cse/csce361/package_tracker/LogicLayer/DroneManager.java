@@ -71,7 +71,6 @@ public class DroneManager {
                 droneId = scan.nextLine();
             }
         }
-
         boolean depotCheck = false;
         while (depotCheck == false) {
             System.out.println("Here is the List of all the depots Please select where you want the drone to dispatch");
@@ -103,7 +102,32 @@ public class DroneManager {
                 depotCheck = true;
             }
         }
+    }
 
+    public void deliverPackage(Package shipment){
+        Location originalDepotLocation = shipment.getCurrentLocation();
+        Depot nextDepot = null;
+        for(Drone d: droneList){
+            if (d.getShipment() == null){
+                nextDepot = DepotManager.getNextClosestDepot(d.getLocation(), shipment.getDestination());
+            }
+        }
+        Drone nextDrone = null;
+        for (Drone d: droneList){
+            if(d.getLocation().equals(shipment.getCurrentLocation())){
+                nextDrone = d;
+            }
+        }
+        System.out.println("Drone is picking up package from depot to head to the destination.");
+        nextDrone.setShipment(shipment);
+        nextDrone.setLocation(shipment.getDestination());
+        shipment.setCurrentLocation(shipment.getDestination());
+        System.out.println("Drone has arrived at destinationn with package: " + shipment.getOrderNumber());
+        shipment.setStatus("Delivered");
+
+        nextDrone.setShipment(null);
+        nextDrone.setLocation(originalDepotLocation);
+        System.out.println("Drone has arrived back at the Depot");
     }
 
     //TODO: pickup package command
@@ -181,6 +205,7 @@ public class DroneManager {
             packageToPickup.setCurrentLocation(droneLocation); //put the package in the depot
             packageToPickup.setStatus("In Depot");
             deliveryDrone.setStatus("In Depot");
+            deliveryDrone.setShipment(null); // empty drone
             //find out what depot it flew to.
 
 

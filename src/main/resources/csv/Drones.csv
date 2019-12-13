@@ -1,11 +1,11 @@
 DroneID,Status,locationX,locationY,packageID
-D001,In Depot,4.0,0.0,
-D002,In Depot,4.0,0.0,
-D003,In Depot,0.0,0.0,
-D004,In Depot,4.0,0.0,
-D005,In Depot,0.0,0.0,
-D006,In Depot,0.0,0.0,
-D007,In Depot,-22,0,
+D001,In Depot,4.0,0.0
+D002,In Depot,4.0,0.0
+D003,In Depot,0.0,0.0
+D004,In Depot,4.0,0.0
+D005,In Depot,0.0,0.0
+D006,In Depot,0.0,0.0
+D007,In Depot,-22,0
 D008,In Depot,-22,0
 D009,In Depot,-18,0
 D010,In Depot,-18,0

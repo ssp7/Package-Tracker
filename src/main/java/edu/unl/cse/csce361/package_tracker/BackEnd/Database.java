@@ -1,7 +1,6 @@
 package edu.unl.cse.csce361.package_tracker.BackEnd;
 
-import edu.unl.cse.csce361.package_tracker.LogicLayer.Depot;
-import edu.unl.cse.csce361.package_tracker.LogicLayer.Drone;
+import edu.unl.cse.csce361.package_tracker.LogicLayer.*;
 import edu.unl.cse.csce361.package_tracker.LogicLayer.Package;
 
 import java.util.List;
@@ -31,5 +30,11 @@ public class Database {
 
     public static int writeDepots(List<Depot> depotList){
         return 0;
+    }
+
+    public static void initializeData(){
+        PackageManager.initializePackage();
+        DroneManager.initializeDrone();
+        DepotManager.initializeDepot();
     }
 }

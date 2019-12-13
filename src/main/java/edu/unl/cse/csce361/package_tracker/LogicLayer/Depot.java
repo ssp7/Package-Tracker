@@ -32,6 +32,6 @@ public class Depot {
 
     @Override
     public String toString() {
-        return "Depot Id :- " + depotID + ", Depot Location :- ( " + depotLocation.getX() + " ," + depotLocation.getY() + ")";
+        return "Depot Id: " + depotID + ", Depot Location: (" + depotLocation.getX() + " ," + depotLocation.getY() + ")\n";
     }
 }

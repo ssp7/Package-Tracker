@@ -51,6 +51,10 @@ public class Drone {
 
     @Override
     public String toString() {
-        return "droneID = " + droneID +", status = " + status;
+        String print ="droneID = " + droneID +", status = " + status;
+        if(this.getShipment() != null){
+            print += ", Package: " + this.shipment;
+        }
+        return print;
     }
 }

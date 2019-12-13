@@ -1,5 +1,4 @@
 package edu.unl.cse.csce361.package_tracker.LogicLayer;
-
 import java.awt.geom.Point2D;
 import java.util.ArrayList;
 import java.util.List;
@@ -50,14 +49,7 @@ public class Location {
         }
     }
 
-    /*Todo
-    # Make a method to get the current location of packages
-    # Make a method to get the current location of Drones
-    # Make a method to get the get all the packages at a particular Depot
-    # Make a method to get the get all the drones at a particular Depot
-
-     */
-    public static Location getPackageCurrentLocation(String packageId) {
+    public static Location getPackageCurrentLocation (String packageId){
         boolean check = false;
         Package packX = PackageManager.getPackage(packageId);
         Scanner scan = new Scanner(System.in);
@@ -140,8 +132,24 @@ public class Location {
     }
 
     public static List<Drone> getAllDronesAtDepot(String depotId) {
+
+        boolean check = false;
+        Scanner scan = new Scanner(System.in);
         Depot d = DepotManager.getDepot(depotId);
         List<Drone> droneListAtDepot = new ArrayList<>();
+
+        //Keeps asking for input until the depot Id matches with any depots we have in the database
+        while(check != true) {
+            if (d == null) {
+                System.out.println("The depot Id doesn't match! Please re-Enter depotId");
+                depotId = scan.nextLine();
+                d = DepotManager.getDepot(depotId);
+            }
+            else {
+                check = true;
+            }
+
+        }
         Location depotLocation = d.getDepotLocation();
         double depotX = depotLocation.getX();
         double depotY = depotLocation.getY();

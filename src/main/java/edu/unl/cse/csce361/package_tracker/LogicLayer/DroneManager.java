@@ -104,7 +104,7 @@ public class DroneManager {
         }
     }
 
-    public void deliverToCustomer(Package shipment){
+    public static void deliverToCustomer(Package shipment){
         Location originalDepotLocation = shipment.getCurrentLocation();
         Depot nextDepot = null;
         for(Drone d: droneList){
@@ -218,7 +218,7 @@ public class DroneManager {
 
         Depot currentDepot = DepotManager.getDepot(shipment.getCurrentLocation());
         Depot destinationDepot = DepotManager.getNextClosestDepot(shipment.getCurrentLocation(), shipment.getDestination());
-        System.out.println(destinationDepot);
+       // System.out.println(destinationDepot);
         List<Drone> droneListAtDepot = Location.getAllDronesAtDepot(currentDepot.getDepotID());
         List<Drone> emptyDrones = new ArrayList<>();
 

@@ -7,6 +7,7 @@ import edu.unl.cse.csce361.package_tracker.Commands.Command;
 import edu.unl.cse.csce361.package_tracker.Commands.ExitCommand;
 import edu.unl.cse.csce361.package_tracker.FrontEnd.CLI;
 import edu.unl.cse.csce361.package_tracker.LogicLayer.Package;
+import edu.unl.cse.csce361.package_tracker.LogicLayer.PackageManager;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -41,6 +42,19 @@ public class TestCases {
 
     @Test
     public void testParsePackage() {
+        //Test if the the initialization is working for packages
+        List<Package>  allPakcages = PackageManager.packageList;
+        int no_of_inputs = allPakcages.size();
+        System.out.println(no_of_inputs);
+        PackageManager.initializePackage();
+        List<Package>  allPakcages_after = PackageManager.packageList;
+
+        int no_of_inputs_after = allPakcages_after.size();
+
+        if(no_of_inputs_after > no_of_inputs){
+            System.out.println("The initialization works");
+            System.out.println("Test passed");
+        }
     }
 
     @Test

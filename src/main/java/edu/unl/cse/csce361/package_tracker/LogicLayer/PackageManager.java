@@ -2,6 +2,7 @@ package edu.unl.cse.csce361.package_tracker.LogicLayer;
 
 import edu.unl.cse.csce361.package_tracker.BackEnd.Database;
 
+import java.awt.geom.Point2D;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -57,13 +58,13 @@ public class PackageManager {
     //This method just makes sure that the customer or the staff is able to request package from the system
     public static void packageRequests(){
 
-        Double originLocationX;
-        Double originLocationY;
+        double originLocationX;
+        double originLocationY;
         Location origin = new Location();
         Location destination = new Location();
         Location current  = new Location();
-        Double DestinationLocationX;
-        Double DestinationLocationY;
+        double DestinationLocationX;
+        double DestinationLocationY;
 
         boolean packageDistanceOrigin = false;
         boolean packageDistanceDestination = false;
@@ -117,4 +118,67 @@ public class PackageManager {
         packageList.add(p);
         System.out.println("Package request created for order number "+ p.getOrderNumber() +"!");
     }
+
+    /*This method just uses two methods made in drone
+            to decide that the package is ready to be moved from depot to depot
+            or to be moved from depot to destination
+     */
+    public static void movePackage(){
+        //Initialize the scanner
+        Scanner scan = new Scanner(System.in);
+        //Print all the pakcages at all the depots;
+        int count_packages_left = 0;
+        System.out.println("List of packages available at depots!");
+        System.out.println("Package-Id              Distance from Destination");
+        for(Package p : PackageManager.packageList){
+
+            if(p.getStatus().equals("In Depot")){
+                Location package_origin = p.getCurrentLocation();
+                Location package_dest = p.getDestination();
+                double distance = Point2D.distance(package_origin.getX(),package_origin.getY(),package_dest.getX(),package_dest.getY());
+                System.out.println(p.getOrderNumber() + "                    " + distance);
+                count_packages_left++;
+            }
+        }
+
+        if(count_packages_left == 0){
+            System.out.println("There are no packages left to be delivered");
+        }
+        else {
+            //Only enters in this loop if the no.of packages at depots is more than 0
+
+            System.out.println("Please enter the package Id to Move it!!");
+            String packageId = scan.nextLine();
+
+            Package shipment = PackageManager.getPackage(packageId);
+            boolean check = false;
+
+            while (check != true) {
+                if (shipment == null) {
+                    System.out.println("Please re-Enter the package Id");
+                    packageId = scan.nextLine();
+                    shipment = PackageManager.getPackage(packageId);
+                } else {
+                    check = true;
+                }
+            }
+            Location location_Package = shipment.getCurrentLocation();
+            Location final_destination = shipment.getDestination();
+
+            if (Location.DistanceWithinMiles(location_Package, final_destination) == false) {
+                //if enters this loop then basically moves from depot to depot
+                //Move package
+                System.out.println("The packages is being sent to the next closest depot!");
+                DroneManager.transferPackage(shipment);
+
+            } else {
+                //moves package from depot to destination
+                //deliver package
+                System.out.println("Package is going to be delivered to the final destination");
+                DroneManager.deliverToCustomer(shipment);
+                System.out.println("Package has been delivered!!");
+            }
+        }
+    }
+
 }
